@@ -184,11 +184,11 @@ if (web5) {
     if (sendInput.value && recordToSend) {
       try {
         // Send the record
-        const { record, status } = await recordToSend.send(sendInput.value);
-        console.log(record, status);
-        if (record) {
+        const { status } = await recordToSend.send(sendInput.value);
+        console.log(status);
+        if (status.code === 202) {
           sendMessages.classList.add("success");
-          sendSuccess.textContent = `Successfully sent record with ID "${record.id}"`;
+          sendSuccess.textContent = `Successfully sent record with ID "${recordToSend.id}"`;
         } else {
           sendMessages.classList.add("error");
           sendError.textContent = `Error sending the record: ${status.detail}. Please correct the error and try again.`;
