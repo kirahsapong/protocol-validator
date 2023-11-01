@@ -74,7 +74,7 @@ if (web5) {
   };
 
   sendInput.oninput = (e) => {
-    if (e.currentTarget.value) {
+    if (e.currentTarget.value && recordToSend) {
       sendButton.removeAttribute("disabled");
     } else {
       if (sendError.textContent) {
@@ -157,7 +157,7 @@ if (web5) {
             listItem.appendChild(code1);
             listItem.append(": ");
             const code2 = document.createElement("code");
-            code2.textContent = record[idKey];
+            code2.textContent = `${record[idKey]}`;
             listItem.appendChild(code2);
             recordResults.append(listItem);
           }
