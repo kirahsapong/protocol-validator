@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This project offers a faster feedback loop for validating protocols and protocol structure in a test browser DWN. This should help you explore and validate your protocol types and structures. It might also help with debugging your Web5 application when working with DWN protocols.
+This project offers a faster feedback loop for validating protocols and protocol structure in a test browser [DWN](https://developer.tbd.website/docs/web5/learn/decentralized-web-nodes). This should help you explore and validate your [protocol types and structures](https://developer.tbd.website/docs/web5/learn/protocols). It might also help with debugging your [Web5](https://github.com/TBD54566975/web5-js) application when working with DWN protocols.
 
 To get started, you can [run it locally](#local-development) or check out the [live demo](https://radiant-semifreddo-af73bb.netlify.app).
 
@@ -10,9 +10,14 @@ To get started, you can [run it locally](#local-development) or check out the [l
 
 The app will spin up a test DWN in your browser for you. Follow the steps to install a protocol into your test DWN and write records against the protocol paths:
 
+### Installing a protocol
+
 1. In the first field, paste a [Protocol Definition](https://developer.tbd.website/docs/web5/learn/protocols#defining-a-protocol) in valid JSON format.
 2. Click `Install` to install the protocol into your test browser DWN.
 3. If the protocol is installed successfully, you should see the protocol `types` that you included in your protocol displayed back to you.
+
+### Writing a record
+
 4. In the second field, paste a [Record Write/Create Request Payload](https://developer.tbd.website/api/web5-js/dwn/records/#createrequest) in valid JSON format.
 5. Click `Check` to check the result of your Record Write/Create Request.
 6. If the record is successfully created, you should see the `recordId`, `contextId`, and `parentId` associated with the resulting record displayed back to you.
@@ -22,9 +27,18 @@ For example, let's say you have three types `blogpost`, `image`, and `alt_text`.
 
 Going further, you can save your `'blogpost/image'` record's `id` and `contextId` to use them as the `parentId` and `contextId` respectively for another new record at a `protocolPath` called `'blogpost/image/alt_text'`.
 
-8. Resulting protocols and records are also be logged to the console for further inspection if needed.
+### Sending a record
 
-### Protocol Defintion Vectors
+8. Make sure the details of the record you just created are still visible to you for this next part: In the third field, paste a [DID](https://developer.tbd.website/docs/web5/learn/decentralized-identifiers) pointing to another DWN.
+9. Click `Send` to check the result of your attempt to send your record to another DID's DWN.
+10. If the send operation is successful, you should see a success message with the correct record's `id` displayed back to you.
+
+### Additional Notes
+
+- Your DID is logged to the console for easy access. If you open a browser window in a private browsing context in addition to your existing session, you can experiment with sending records between two different DIDs.
+- Resulting protocols, records, and sends are also logged to the console for further inspection if needed.
+
+### Protocol Definition Vectors
 
 If you don't have a protocol definition ready to test out, you can get started with one of the [protocol definition test vectors](https://github.com/TBD54566975/dwn-sdk-js/tree/main/tests/vectors/protocol-definitions) shared in the [DWN SDK](https://github.com/TBD54566975/dwn-sdk-js).
 

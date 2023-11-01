@@ -4,7 +4,7 @@ const loading = document.querySelector("#loading");
 const content = document.querySelector("#content");
 const protocolForm = document.querySelector("#protocol-form");
 const protocolInput = document.querySelector("#protocol-input");
-const protocolButton = document.querySelector("#protocol-install-button");
+const protocolButton = document.querySelector("#protocol-button");
 const protocolMessages = document.querySelector("#protocol-messages");
 const protocolSuccess = document.querySelector("#protocol-success");
 const protocolError = document.querySelector("#protocol-error");
@@ -12,18 +12,29 @@ const protocolResults = document.querySelector("#protocol-results");
 
 const recordForm = document.querySelector("#record-form");
 const recordInput = document.querySelector("#record-input");
-const recordButton = document.querySelector("#record-check-button");
+const recordButton = document.querySelector("#record-button");
 const recordMessages = document.querySelector("#record-messages");
 const recordSuccess = document.querySelector("#record-success");
 const recordError = document.querySelector("#record-error");
 const recordResults = document.querySelector("#record-results");
 
+const sendForm = document.querySelector("#send-form");
+const sendInput = document.querySelector("#send-input");
+const sendButton = document.querySelector("#send-button");
+const sendMessages = document.querySelector("#send-messages");
+const sendSuccess = document.querySelector("#send-success");
+const sendError = document.querySelector("#send-error");
+
 const { web5, did } = await Web5.connect();
+console.log(did);
 
 if (web5) {
   // Remove loading on successful load of web5
   document.body.removeChild(loading);
   content.style.visibility = "visible";
+
+  // Create record variable for sending later
+  let recordToSend;
 
   // Handle user input of a protocol
   protocolInput.oninput = (e) => {
@@ -53,8 +64,28 @@ if (web5) {
       if (recordSuccess.textContent) {
         recordMessages.classList.remove("success");
         recordSuccess.textContent = "";
+        if (recordToSend) {
+          recordToSend = undefined;
+          recordButton.setAttribute("disabled", "true");
+        }
       }
       recordButton.setAttribute("disabled", "true");
+    }
+  };
+
+  sendInput.oninput = (e) => {
+    if (e.currentTarget.value) {
+      sendButton.removeAttribute("disabled");
+    } else {
+      if (sendError.textContent) {
+        sendMessages.classList.remove("error");
+        sendError.textContent = "";
+      }
+      if (sendSuccess.textContent) {
+        sendMessages.classList.remove("success");
+        sendSuccess.textContent = "";
+      }
+      sendButton.setAttribute("disabled", "true");
     }
   };
 
@@ -111,10 +142,11 @@ if (web5) {
     if (recordInput.value) {
       try {
         const recordPayload = JSON.parse(recordInput.value);
-        // Install the protocol
+        // Write the record
         const { record, status } = await web5.dwn.records.write(recordPayload);
         console.log(record, status);
         if (record) {
+          recordToSend = record;
           recordMessages.classList.add("success");
           recordSuccess.textContent =
             "Successfully wrote record. Record IDs found:";
@@ -139,6 +171,34 @@ if (web5) {
         recordSuccess.textContent = "";
         recordMessages.classList.add("error");
         recordError.textContent = `Error parsing or handling record. Please check the record and try again: ${e}`;
+      }
+    }
+  };
+
+  sendForm.onsubmit = async (e) => {
+    e.preventDefault();
+    sendMessages.classList.remove("error");
+    sendError.textContent = "";
+    sendMessages.classList.remove("success");
+    sendSuccess.textContent = "";
+    if (sendInput.value && recordToSend) {
+      try {
+        // Send the record
+        const { record, status } = await recordToSend.send(sendInput.value);
+        console.log(record, status);
+        if (record) {
+          sendMessages.classList.add("success");
+          sendSuccess.textContent = `Successfully sent record with ID "${record.id}"`;
+        } else {
+          sendMessages.classList.add("error");
+          sendError.textContent = `Error sending the record: ${status.detail}. Please correct the error and try again.`;
+        }
+      } catch (e) {
+        console.error(e);
+        sendMessages.classList.remove("success");
+        sendSuccess.textContent = "";
+        sendMessages.classList.add("error");
+        sendError.textContent = `Error parsing or handling the DID or sending the record. Please check both and try again: ${e}`;
       }
     }
   };

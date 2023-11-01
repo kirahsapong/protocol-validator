@@ -31,7 +31,7 @@
                 placeholder="/* Paste protocol definition JSON here */"
                 autocomplete="off"
               ></textarea>
-              <button id="protocol-install-button" disabled>Install</button>
+              <button id="protocol-button" disabled>Install</button>
             </div>
           </form>
           <div id="protocol-messages">
@@ -50,7 +50,7 @@
                 placeholder="/* Paste the record payload JSON here */"
                 autocomplete="off"
               ></textarea>
-              <button id="record-check-button" disabled>Check</button>
+              <button id="record-button" disabled>Check</button>
             </div>
           </form>
           <div id="record-messages">
@@ -58,6 +58,24 @@
             <span id="record-success"></span>
           </div>
           <ul id="record-results"></ul>
+          <form id="send-form">
+            <h2>Send this record to another DWN</h2>
+            <label for="send-input" class="sr-only"
+              >Paste the DID of the other DWN here</label
+            >
+            <div id="send-input-area">
+              <textarea
+                id="send-input"
+                placeholder="/* Paste the DID of the other DWN here */"
+                autocomplete="off"
+              ></textarea>
+              <button id="send-button" disabled>Send</button>
+            </div>
+          </form>
+          <div id="send-messages">
+            <span id="send-error"></span>
+            <span id="send-success"></span>
+          </div>
         </div>
       </main>
     </div>
