@@ -1,0 +1,126 @@
+:root {
+  --background: #fefefe;
+  --text-color: #101010;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  font-family: sans-serif;
+  background: var(--background);
+  color: var(--text-color);
+  width: 680px;
+  max-width: 100%;
+  margin: 2rem auto;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+form {
+  margin-block: 1rem;
+}
+
+button,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button[disabled] {
+  cursor: auto;
+  opacity: 0.2;
+}
+
+textarea {
+  width: 100%;
+  height: 110px;
+  font-family: monospace;
+}
+
+code {
+  background: #e0e0e0;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  border: 1px solid #d0d0d0;
+}
+
+#content {
+  display: contents;
+}
+
+#loading {
+  top: 0;
+  left: 0;
+  width: 100dvw;
+  height: 100dvh;
+  position: absolute;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: var(--background);
+  font-family: monospace;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.error {
+  color: red;
+  background: #f9e5e5;
+  border: 1px solid #f8b8b8;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+}
+
+.success {
+  background: #f1fbf1;
+  border: 1px solid #a6d8a6;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  color: green;
+}
+
+.sr-only {
+  border: 0 !important;
+  clip: rect(1px, 1px, 1px, 1px) !important;
+  -webkit-clip-path: inset(50%) !important;
+  clip-path: inset(50%) !important;
+  height: 1px !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: absolute !important;
+  width: 1px !important;
+  white-space: nowrap !important;
+}
+
+.sr-only-focusable:focus,
+.sr-only-focusable:active {
+  clip: auto !important;
+  -webkit-clip-path: none !important;
+  clip-path: none !important;
+  height: auto !important;
+  margin: auto !important;
+  overflow: visible !important;
+  width: auto !important;
+  white-space: normal !important;
+}

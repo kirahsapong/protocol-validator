@@ -22,6 +22,12 @@ For example, let's say you have three types `blogpost`, `image`, and `alt_text`.
 
 Going further, you can save your `'blogpost/image'` record's `id` and `contextId` to use them as the `parentId` and `contextId` respectively for another new record at a `protocolPath` called `'blogpost/image/alt_text'`.
 
+8. Resulting protocols and records are also be logged to the console for further inspection if needed.
+
+### Protocol Defintion Vectors
+
+If you don't have a protocol definition ready to test out, you can get started with one of the [protocol definition test vectors](https://github.com/TBD54566975/dwn-sdk-js/tree/main/tests/vectors/protocol-definitions) shared in the [DWN SDK](https://github.com/TBD54566975/dwn-sdk-js).
+
 ## Local development
 
 ### Prerequisites
