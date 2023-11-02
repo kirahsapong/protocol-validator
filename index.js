@@ -1,6 +1,8 @@
-// Toggle versions
-// import { Web5 } from "https://cdn.jsdelivr.net/npm/@web5/api@0.8.1/dist/browser.mjs";
-import { Web5 } from "https://cdn.jsdelivr.net/npm/@web5/api@0.8.2-alpha-20231102-b4820ef/dist/browser.mjs";
+import { Web5 } from "https://cdn.jsdelivr.net/npm/@web5/api@0.8.1/dist/browser.mjs";
+/* Toggle versions to try the latest alpha */
+/* Note that alpha versions may not be compatible with the dwn-server */
+/* Alpha packages may also be backwards incompatible. You may need to nuke your local IndexedDB when toggling back to the latest stable release */
+// import { Web5 } from "https://cdn.jsdelivr.net/npm/@web5/api@0.8.2-alpha-20231102-b4820ef/dist/browser.mjs";
 
 const loading = document.querySelector("#loading");
 const content = document.querySelector("#content");
@@ -236,8 +238,13 @@ try {
 
     readForm.onsubmit = async (e) => {
       e.preventDefault();
-      try {
-        if (readInput.value) {
+      readMessages.classList.remove("error");
+      readError.textContent = "";
+      readMessages.classList.remove("success");
+      readSuccess.textContent = "";
+      readResults.replaceChildren([]);
+      if (readInput.value) {
+        try {
           const readPayload = JSON.parse(readInput.value);
           const { record, status } = await web5.dwn.records.read(readPayload);
           console.log(record, status);
@@ -260,13 +267,13 @@ try {
             readMessages.classList.add("error");
             readError.textContent = `Error reading the record: ${status.detail}. Please correct the error and try again.`;
           }
+        } catch (e) {
+          console.error(e);
+          readMessages.classList.remove("success");
+          readSuccess.textContent = "";
+          readMessages.classList.add("error");
+          readError.textContent = `Error parsing or handling the record read request. Please check the request payload and try again: ${e}`;
         }
-      } catch (e) {
-        console.error(e);
-        readMessages.classList.remove("success");
-        readSuccess.textContent = "";
-        readMessages.classList.add("error");
-        readError.textContent = `Error parsing or handling the record read request. Please check the request payload and try again: ${e}`;
       }
     };
   } else {
