@@ -76,6 +76,25 @@
             <span id="send-error"></span>
             <span id="send-success"></span>
           </div>
+          <form id="read-form">
+            <h2>Read a record from a DWN protocol</h2>
+            <label for="read-input" class="sr-only"
+              >Paste the record payload here</label
+            >
+            <div id="read-input-area">
+              <textarea
+                id="read-input"
+                placeholder="/* Paste the record payload here */"
+                autocomplete="off"
+              ></textarea>
+              <button id="read-button" disabled>Read</button>
+            </div>
+          </form>
+          <div id="read-messages">
+            <span id="read-error"></span>
+            <span id="read-success"></span>
+          </div>
+          <ul id="read-results"></ul>
         </div>
       </main>
     </div>
