@@ -283,4 +283,20 @@ try {
 } catch (e) {
   console.error(e);
   loading.textContent = "Error: " + e.message;
+  const additionalInfo = document.createElement("div");
+  additionalInfo.textContent =
+    "Try clearing the page's IndexedDB and reload the page.";
+  const resetButton = document.createElement("button");
+  resetButton.textContent = "Reset and reload";
+  resetButton.onclick = async () => {
+    const databases = await indexedDB.databases();
+    for (const database of databases) {
+      if (database.name) {
+        indexedDB.deleteDatabase(database.name);
+      }
+    }
+    location.reload();
+  };
+  loading.appendChild(additionalInfo);
+  additionalInfo.appendChild(resetButton);
 }

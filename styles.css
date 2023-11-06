@@ -75,6 +75,7 @@ code {
   position: absolute;
   z-index: 999;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
@@ -82,6 +83,15 @@ code {
   font-family: monospace;
   font-size: 1.2rem;
   font-weight: bold;
+}
+
+#loading > div {
+  margin-block: 1rem;
+}
+
+#loading > div > button {
+  display: block;
+  margin: 1rem auto;
 }
 
 .error {
