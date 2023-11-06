@@ -33,6 +33,12 @@ Going further, you can save your `'blogpost/image'` record's `id` and `contextId
 9. Click `Send` to check the result of your attempt to send your record to another DID's DWN.
 10. If the send operation is successful, you should see a success message with the correct record's `id` displayed back to you.
 
+### Reading a record
+
+11. In the fourth field, paste a [Record Read Request Payload](https://developer.tbd.website/api/web5-js/dwn/records/#readrequest) in valid JSON format. You'll need a valid record's `id` to read. You can [optionally pass the `from` property](https://github.com/TBD54566975/web5-js#web5dwnrecordsreadrequest) into your request to read from another DID's DWN.
+12. Click `Read` to see the result of your Record Read Request.
+13. If the record read operation is successful, you should see the `recordId`, `contextId`, and `parentId` associated with the resulting record displayed back to you.
+
 ### Additional Notes
 
 - Your DID is logged to the console for easy access. If you open a browser window in a private browsing context in addition to your existing session, you can experiment with sending records between two different DIDs.
