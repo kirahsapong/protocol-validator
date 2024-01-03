@@ -1,8 +1,8 @@
-import { Web5 } from "https://cdn.jsdelivr.net/npm/@web5/api@0.8.1/dist/browser.mjs";
+import { Web5 } from "https://cdn.jsdelivr.net/npm/@web5/api@0.8.3/dist/browser.mjs";
 /* Toggle versions to try the latest alpha */
 /* Note that alpha versions may not be compatible with the dwn-server */
 /* Alpha packages may also be backwards incompatible. You may need to nuke your local IndexedDB when toggling back to the latest stable release */
-// import { Web5 } from "https://cdn.jsdelivr.net/npm/@web5/api@0.8.2-alpha-20231102-b4820ef/dist/browser.mjs";
+// eg: import { Web5 } from "https://cdn.jsdelivr.net/npm/@web5/api@0.8.3-alpha-***/dist/browser.mjs";
 
 const loading = document.querySelector("#loading");
 const content = document.querySelector("#content");
