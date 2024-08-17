@@ -1,103 +1,13 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
   <head>
-    <title>Protocol Validator</title>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/styles.css" />
-    <link rel="icon" href="favicon.svg" />
+    <title>Vite + React + TS</title>
   </head>
-
   <body>
-    <div id="loading">Loading Web5...</div>
-    <div id="content" style="visibility: hidden">
-      <header>
-        <h1 id="heading">Protocol Validator</h1>
-        <p>
-          An interactive protocol validator. Install a protocol into a test
-          browser DWN, then write records to different paths to validate your
-          structure.
-        </p>
-      </header>
-      <main>
-        <div id="form-area">
-          <form id="protocol-form">
-            <h2>Install a protocol</h2>
-            <label for="protocol-input" class="sr-only"
-              >Paste protocol definition JSON here</label
-            >
-            <div id="protocol-input-area">
-              <textarea
-                id="protocol-input"
-                placeholder="/* Paste protocol definition JSON here */"
-                autocomplete="off"
-              ></textarea>
-              <button id="protocol-button" disabled>Install</button>
-            </div>
-          </form>
-          <div id="protocol-messages">
-            <span id="protocol-error"></span>
-            <span id="protocol-success"></span>
-          </div>
-          <ul id="protocol-results"></ul>
-          <form id="record-form">
-            <h2>Write a record to the DWN protocol</h2>
-            <label for="record-input" class="sr-only"
-              >Paste the record payload JSON here</label
-            >
-            <div id="record-input-area">
-              <textarea
-                id="record-input"
-                placeholder="/* Paste the record payload JSON here */"
-                autocomplete="off"
-              ></textarea>
-              <button id="record-button" disabled>Check</button>
-            </div>
-          </form>
-          <div id="record-messages">
-            <span id="record-error"></span>
-            <span id="record-success"></span>
-          </div>
-          <ul id="record-results"></ul>
-          <form id="send-form">
-            <h2>Send this record to another DWN</h2>
-            <label for="send-input" class="sr-only"
-              >Paste the DID of the other DWN here</label
-            >
-            <div id="send-input-area">
-              <textarea
-                id="send-input"
-                placeholder="/* Paste the DID of the other DWN here */"
-                autocomplete="off"
-              ></textarea>
-              <button id="send-button" disabled>Send</button>
-            </div>
-          </form>
-          <div id="send-messages">
-            <span id="send-error"></span>
-            <span id="send-success"></span>
-          </div>
-          <form id="read-form">
-            <h2>Read a record from a DWN protocol</h2>
-            <label for="read-input" class="sr-only"
-              >Paste the record payload here</label
-            >
-            <div id="read-input-area">
-              <textarea
-                id="read-input"
-                placeholder="/* Paste the record payload here */"
-                autocomplete="off"
-              ></textarea>
-              <button id="read-button" disabled>Read</button>
-            </div>
-          </form>
-          <div id="read-messages">
-            <span id="read-error"></span>
-            <span id="read-success"></span>
-          </div>
-          <ul id="read-results"></ul>
-        </div>
-      </main>
-    </div>
-    <script type="module" src="./index.js"></script>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
