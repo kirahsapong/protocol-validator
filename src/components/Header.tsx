@@ -1,4 +1,4 @@
-import Wordmark from '/assets/wordmark.svg';
+import Wordmark from '../assets/wordmark.svg';
 
 const Header = () => {
   return (

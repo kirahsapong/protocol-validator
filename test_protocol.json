@@ -1,0 +1,235 @@
+{
+  "protocol": "tbd/protocols/chats/v1",
+  "published": true,
+  "types": {
+    "chat": {
+      "schema": "chat",
+      "dataFormats": ["application/json"]
+    },
+    "last": {
+      "dataFormats": ["text/plain"]
+    },
+    "message": {
+      "dataFormats": ["text/plain"]
+    },
+    "reaction": {
+      "dataFormats": ["text/plain"]
+    },
+    "attachment": {
+      "dataFormats": [
+        "image/png",
+        "image/gif",
+        "image/jpeg",
+        "image/svg+xml",
+        "image/webp",
+        "audio/mpeg",
+        "video/mp4"
+      ]
+    },
+    "request": {
+      "schema": "request",
+      "dataFormats": ["application/json"]
+    }
+  },
+  "structure": {
+    "chat": {
+      "$actions": [
+        {
+          "who": "anyone",
+          "can": "write"
+        },
+        {
+          "who": "author",
+          "of": "chat",
+          "can": "read"
+        },
+        {
+          "who": "recipient",
+          "of": "chat",
+          "can": "read"
+        }
+      ],
+      "last": {
+        "$actions": [
+          {
+            "who": "author",
+            "of": "chat",
+            "can": "write"
+          },
+          {
+            "who": "recipient",
+            "of": "chat",
+            "can": "write"
+          },
+          {
+            "who": "author",
+            "of": "chat/last",
+            "can": "read"
+          }
+        ]
+      },
+      "message": {
+        "$actions": [
+          {
+            "who": "author",
+            "of": "chat",
+            "can": "write"
+          },
+          {
+            "who": "recipient",
+            "of": "chat",
+            "can": "write"
+          },
+          {
+            "who": "author",
+            "of": "chat/message",
+            "can": "read"
+          },
+          {
+            "who": "recipient",
+            "of": "chat/message",
+            "can": "read"
+          }
+        ],
+        "reaction": {
+          "$actions": [
+            {
+              "who": "author",
+              "of": "chat/message",
+              "can": "write"
+            },
+            {
+              "who": "recipient",
+              "of": "chat/message",
+              "can": "write"
+            },
+            {
+              "who": "author",
+              "of": "chat/message/reaction",
+              "can": "read"
+            },
+            {
+              "who": "recipient",
+              "of": "chat/message/reaction",
+              "can": "read"
+            }
+          ]
+        },
+        "attachment": {
+          "$actions": [
+            {
+              "who": "author",
+              "of": "chat/message",
+              "can": "write"
+            },
+            {
+              "who": "recipient",
+              "of": "chat/message",
+              "can": "write"
+            },
+            {
+              "who": "author",
+              "of": "chat/message/attachment",
+              "can": "read"
+            },
+            {
+              "who": "recipient",
+              "of": "chat/message/attachment",
+              "can": "read"
+            }
+          ]
+        },
+        "message": {
+          "$actions": [
+            {
+              "who": "author",
+              "of": "chat/message",
+              "can": "write"
+            },
+            {
+              "who": "recipient",
+              "of": "chat/message",
+              "can": "write"
+            },
+            {
+              "who": "author",
+              "of": "chat/message/message",
+              "can": "read"
+            },
+            {
+              "who": "recipient",
+              "of": "chat/message/message",
+              "can": "read"
+            }
+          ],
+          "reaction": {
+            "$actions": [
+              {
+                "who": "author",
+                "of": "chat/message/message",
+                "can": "write"
+              },
+              {
+                "who": "recipient",
+                "of": "chat/message/message",
+                "can": "write"
+              },
+              {
+                "who": "author",
+                "of": "chat/message/message/reaction",
+                "can": "read"
+              },
+              {
+                "who": "recipient",
+                "of": "chat/message/message/reaction",
+                "can": "read"
+              }
+            ]
+          },
+          "attachment": {
+            "$actions": [
+              {
+                "who": "author",
+                "of": "chat/message/message",
+                "can": "write"
+              },
+              {
+                "who": "recipient",
+                "of": "chat/message/message",
+                "can": "write"
+              },
+              {
+                "who": "author",
+                "of": "chat/message/message/attachment",
+                "can": "read"
+              },
+              {
+                "who": "recipient",
+                "of": "chat/message/message/attachment",
+                "can": "read"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "request": {
+      "$actions": [
+        {
+          "who": "anyone",
+          "can": "write"
+        },
+        {
+          "who": "author",
+          "of": "request",
+          "can": "read"
+        },
+        {
+          "who": "recipient",
+          "of": "request",
+          "can": "read"
+        }
+      ]
+    }
+  }
+}

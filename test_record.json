@@ -1,0 +1,48 @@
+{
+  "directory": {
+    "data": {},
+    "message": {
+      "protocol": "tbd/contacts/v2",
+      "protocolPath": "directory",
+      "schema": "directory"
+    }
+  },
+
+  "profile": {
+    "data": {},
+    "message": {
+      "protocol": "tbd/profiles/v2",
+      "protocolPath": "profile",
+      "schema": "profile"
+    }
+  },
+
+  "chat": {
+    "data": {
+      "participants": ["123", "456"]
+    },
+    "message": {
+      "protocol": "tbd/protocols/chats/v1",
+      "protocolPath": "chat",
+      "schema": "chat"
+    }
+  },
+
+  "message": {
+    "data": "hello",
+    "message": {
+      "protocol": "tbd/protocols/chats/v1",
+      "protocolPath": "chat/message",
+      "schema": "profile"
+    }
+  },
+
+  "nested_message": {
+    "data": "hello again",
+    "message": {
+      "protocol": "tbd/protocols/chats/v1",
+      "protocolPath": "chat/message/message",
+      "schema": "profile"
+    }
+  }
+}

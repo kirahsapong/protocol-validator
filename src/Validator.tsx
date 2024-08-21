@@ -26,7 +26,7 @@ const Validator = () => {
         listMap.set(type, [`The owner can ${actions}`])
       })
 
-      const mapStructure = (parentKeys: {[k: string] : any}) => {
+      const mapStructure = (parentKeys: {[k: string]: unknown}) => {
         Object.keys(parentKeys).map(key => {
           const values = listMap.get(key) ?? []
   
@@ -41,7 +41,7 @@ const Validator = () => {
               // recipient
               // role
               const ruleActions: string[] = [];
-              for (const action of parentKeys.key) {
+              for (const action of parentKeys[key]) {
                 if (action.who == ProtocolActor.Anyone) {
                   ruleActions.push(`Anyone can ${action.can.join(', ')}`)
                 }
@@ -51,7 +51,7 @@ const Validator = () => {
                 if (action.who == ProtocolActor.Recipient) {
                   ruleActions.push(`The recipient of ${action.of} can ${action.can.join(', ')}`)
                 }
-                if (!!action.role) {
+                if (action.role) {
                   ruleActions.push(`The ${action.role} role can ${action.can.join(', ')}`)
                 }
               }
@@ -59,7 +59,7 @@ const Validator = () => {
             }
           } else {
             // get the keys of this key and recurse
-            mapStructure(parentKeys.key)
+            mapStructure(parentKeys[key])
           }
         })
       }
@@ -99,7 +99,7 @@ const Validator = () => {
               'Write',
               'Send',
               'Read'
-            ].map(method => <option>{method}</option>)
+            ].map((method, i) => <option key={i}>{method}</option>)
           }
         </select>
       </div>
@@ -107,7 +107,7 @@ const Validator = () => {
     input: (
       <div>
         <CodeMirror
-          value={JSON.stringify(jsonValue)}
+          value={JSON.stringify(jsonValue, null, 2)}
           onChange={handleJsonChange}
           height="100px"
           extensions={[json()]}
