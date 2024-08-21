@@ -26,7 +26,8 @@ const Validator = () => {
         listMap.set(type, [`The owner can ${actions}`])
       })
 
-      const mapStructure = (parentKeys: {[k: string]: unknown}) => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const mapStructure = (parentKeys: { [k: string]: any }) => {
         Object.keys(parentKeys).map(key => {
           const values = listMap.get(key) ?? []
   
